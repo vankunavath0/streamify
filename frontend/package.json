@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "prebuild": "rm -rf node_modules/rollup/dist/native.js",
-  "build": "vite build",
+     "prebuild": "rm -rf node_modules/rollup/dist/native.js",
+  "build": "node node_modules/vite/bin/vite.js build",
     "lint": "eslint .",
     "preview": "node node_modules/vite/bin/vite.js preview",
     "start": "node node_modules/vite/bin/vite.js preview --host"
