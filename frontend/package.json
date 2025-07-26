@@ -5,11 +5,12 @@
   "type": "module",
   "scripts": {
   "dev": "vite",
-  "build": "npx --no-install vite build",
+  "build": "node node_modules/vite/bin/vite.js build",
   "lint": "eslint .",
-  "preview": "npx vite preview",
-  "start": "npx vite preview --host"
-},
+  "preview": "node node_modules/vite/bin/vite.js preview",
+  "start": "node node_modules/vite/bin/vite.js preview --host"
+}
+,
   "dependencies": {
     "@stream-io/video-react-sdk": "^1.14.4",
     "@tanstack/react-query": "^5.74.4",
