@@ -4,13 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-  "dev": "vite",
-  "build": "node node_modules/vite/bin/vite.js build",
-  "lint": "eslint .",
-  "preview": "node node_modules/vite/bin/vite.js preview",
-  "start": "node node_modules/vite/bin/vite.js preview --host"
-}
-,
+    "dev": "vite",
+    "prebuild": "rm -rf node_modules/rollup/dist/native.js",
+  "build": "vite build",
+    "lint": "eslint .",
+    "preview": "node node_modules/vite/bin/vite.js preview",
+    "start": "node node_modules/vite/bin/vite.js preview --host"
+  },
   "dependencies": {
     "@stream-io/video-react-sdk": "^1.14.4",
     "@tanstack/react-query": "^5.74.4",
