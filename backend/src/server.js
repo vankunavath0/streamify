@@ -1,8 +1,10 @@
 import express from "express";
 import "dotenv/config";
 import cookieParser from "cookie-parser";
-import cors from "cors";
+import cors from "cors"; // Correct: Use this import for cors
 import path from "path";
+
+// Remove: const cors = require('cors'); // This line is redundant and mixes module syntaxes
 
 import authRoutes from "./routes/auth.route.js";
 import userRoutes from "./routes/user.route.js";
@@ -20,6 +22,12 @@ const allowedOrigins = [
   'https://streamify-2mnr.vercel.app'
 ];
 
+// Middleware
+// This should be the first express.json() call
+app.use(express.json()); // To parse JSON request bodies
+app.use(cookieParser()); // To parse cookies
+
+// CORS configuration - placed before your routes
 app.use(cors({
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
@@ -31,14 +39,12 @@ app.use(cors({
   credentials: true
 }));
 
-
-app.use(express.json());
-app.use(cookieParser());
-
+// API Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/chat", chatRoutes);
 
+// Serve frontend in production
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
@@ -47,6 +53,7 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
+// Start the server and connect to DB
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
   connectDB();
