@@ -7,6 +7,8 @@ const LoginPage = () => {
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
+
+    //
   });
 
   // This is how we did it at first, without using our custom hook
